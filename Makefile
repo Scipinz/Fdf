@@ -6,7 +6,7 @@
 #    By: kblok <kblok@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/11/16 20:46:21 by kblok         #+#    #+#                  #
-#    Updated: 2022/10/19 11:14:49 by kblok         ########   odam.nl          #
+#    Updated: 2022/10/24 17:27:22 by kblok         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,8 @@ HEADERS		= 	-I $(FDF) -I $(MLX42) -I $(LIBFT)
 
 #==============================================================================: Include files
 FDF			=	.
-LIBFT		= 	libft/
-MLX42		=	MLX42/
+LIBFT		= 	includes/libft/
+MLX42		=	includes/MLX42/
 
 #==============================================================================: Source files 
 SRCS		=	$(addprefix srcs/, \
@@ -53,7 +53,7 @@ MAGENTA		= \033[1;35m
 RESET		= \033[0m
 
 #==============================================================================: Make commands
-all: message mlx libft $(NAME)
+all: message mlx $(NAME)
 
 #==============================================================================: Main compile
 $(NAME): $(OBJS)
@@ -90,15 +90,15 @@ message:
 #==============================================================================: Remove all object files
 clean:
 	@$(RM) objs/
-	@$(MAKE) clean -C libft
-	@$(MAKE) clean -C MLX42
+	@$(MAKE) clean -C $(LIBFT)
+	@$(MAKE) clean -C $(MLX42)
 	@echo "$(RED)🧹Cleaned object folders!$(RESET)"
 
 #==============================================================================: Remove object files and executables
 fclean: clean
 	@$(RM) $(NAME)
-	@$(MAKE) fclean -C libft
-	@$(MAKE) fclean -C MLX42
+	@$(MAKE) fclean -C $(LIBFT)
+	@$(MAKE) fclean -C $(MLX42)
 	@echo "$(RED)🧹Cleaned $(NAME)!$(RESET)"
 
 #==============================================================================: Remove object files and executables then remake executables

@@ -6,7 +6,7 @@
 /*   By: kblok <kblok@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/19 15:12:55 by kblok         #+#    #+#                 */
-/*   Updated: 2022/10/18 14:10:10 by kblok         ########   odam.nl         */
+/*   Updated: 2022/10/24 17:19:20 by kblok         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include <errno.h>
 # include <fcntl.h>
 # include <stdio.h>
-# include "libft/libft.h"
-# include "MLX42/include/MLX42/MLX42.h"
+# include "includes/libft/libft.h"
+# include "includes/MLX42/include/MLX42/MLX42.h"
 # define WIDTH 1920
 # define HEIGHT 1080
 
@@ -27,6 +27,14 @@ typedef struct s_coord
 	int	x;
 	int	y;
 }	t_coord;
+
+typedef struct s_grid
+{
+	int	size;
+	int	x;
+	int	y;
+	int	z;
+}	t_grid;
 
 typedef struct s_map
 {
@@ -44,15 +52,9 @@ typedef struct s_instance
 	t_grid		grid;
 }	t_instance;
 
-typedef struct s_grid
-{
-	int	size;
-	int	x;
-	int	y;
-	int	z;
-}	t_grid;
 
-void	error_check(char *error_msg);
+
+void	error(char *error_msg);
 t_map	map_parse(char *filepath);
 char	*read_map(int fd, int *depth);
 void	hooks(void *param);

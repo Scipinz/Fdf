@@ -6,7 +6,7 @@
 /*   By: kblok <kblok@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/18 13:51:08 by kblok         #+#    #+#                 */
-/*   Updated: 2022/10/18 14:32:05 by kblok         ########   odam.nl         */
+/*   Updated: 2022/10/24 17:24:00 by kblok         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ t_coord	calc_coord(t_instance fdf, int x, int y, int z)
 	y *= fdf.grid.size;
 	iso_rot(&x, &y);
 	x += WIDTH / 2;
-	y += HEIGHT / 2;
+	y += -z + HEIGHT / 2;
 	return (translate_coord(x, y));
 }

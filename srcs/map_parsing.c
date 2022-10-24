@@ -6,13 +6,13 @@
 /*   By: kblok <kblok@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/17 12:59:15 by kblok         #+#    #+#                 */
-/*   Updated: 2022/10/18 13:50:10 by kblok         ########   odam.nl         */
+/*   Updated: 2022/10/24 17:22:31 by kblok         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static int	count_width(char *str_map)
+static int	width(char *str_map)
 {
 	int	width;
 	int	i;
@@ -44,6 +44,8 @@ static t_map	process(char *str_map, int depth)
 	int		i;
 	int		num;
 
+	i = 0;
+	num = 0;
 	map.height = depth;
 	map.width = width(str_map);
 	map.point = (int *)ft_calloc(map.height * map.width, sizeof(int));
