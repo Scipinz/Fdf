@@ -52,6 +52,8 @@ SRCS	= 	ft_atoi.c \
 			ft_printf.c \
 			ft_strappend.c \
 			ft_get_next_line.c \
-			ft_abs.c
+			ft_abs.c \
+			ft_max.c \
+			ft_min.c
 
 SRCS := $(SRCS:%=src/%)

@@ -6,7 +6,7 @@
 /*   By: kblok <kblok@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/17 14:06:00 by kblok         #+#    #+#                 */
-/*   Updated: 2022/10/17 14:27:44 by kblok         ########   odam.nl         */
+/*   Updated: 2022/11/03 12:24:28 by kblok         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,12 @@ static char	*ft_read_data(int fd, t_data_store *store)
 char	*ft_get_next_line(int fd)
 {
 	static t_data_store	store;
-
 	if (read(fd, NULL, 0) != -1 && BUFFER_SIZE > 0)
 	{
 		if (store.r_main)
 		{
 			store.readstr = ft_strdup(store.r_main);
-			free (store.r_main);
+			free(store.r_main);
 			store.r_main = NULL;
 		}
 		return (ft_read_data(fd, &store));

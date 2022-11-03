@@ -6,7 +6,7 @@
 /*   By: kblok <kblok@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/17 16:56:11 by kblok         #+#    #+#                 */
-/*   Updated: 2022/10/24 17:23:15 by kblok         ########   odam.nl         */
+/*   Updated: 2022/11/02 17:00:52 by kblok         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ static void	draw_grid(t_instance fdf, int x, int y)
 	if (x != fdf.map.width - 1)
 		draw_line(fdf.img, calc_coord(fdf, x, y, calc_height(fdf, x, y)), \
 		calc_coord(fdf, x + 1, y, calc_height(fdf, x + 1, y)));
+	if (x != fdf.map.height - 1)
+		draw_line(fdf.img, calc_coord(fdf, x, y, calc_height(fdf, x, y)), \
+		calc_coord(fdf, x, y + 1, calc_height(fdf, x, y + 1)));
 }
 
 void	project_map(t_instance fdf)

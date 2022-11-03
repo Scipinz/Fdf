@@ -6,7 +6,7 @@
 /*   By: kblok <kblok@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/16 19:42:25 by kblok         #+#    #+#                 */
-/*   Updated: 2021/11/16 19:54:39 by kblok         ########   odam.nl         */
+/*   Updated: 2022/11/02 14:59:56 by kblok         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,39 +14,22 @@
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t num)
 {
-	size_t	idx;
-	size_t	idx2;
+	size_t	i;
 
-	idx = 0;
-	if (!needle || !*needle)
+	i = 0;
+	if (needle == NULL || ft_strlen(needle) == -0)
 		return ((char *)haystack);
-	while (idx < num && haystack[idx] != '\0')
+	if (ft_strlen(needle) > num)
+		return (NULL);
+	while (i < num)
 	{
-		idx2 = 0;
-		while (haystack[idx + idx2] == needle[idx2] && idx + idx2 < num)
+		if (ft_strncmp((char *)&haystack[i], needle, ft_strlen(needle)) == 0)
 		{
-			idx2++;
-			if (needle[idx2] == '\0')
-				return (((char *)haystack) + idx);
+			if (i + ft_strlen(needle) > num)
+				return (NULL);
+			return ((char *)&haystack[i]);
 		}
-		idx2 = 0;
-		idx++;
+		i++;
 	}
-	return (0);
+	return (NULL);
 }
-
-// COMMENTS:
-
-	// idx2 = 0;
-	// // Basicaly strcmp, consider making the fucntion strcmp
-	// while (haystack[idx + idx2] == needle[idx2] && idx + idx2 < num)
-	// {
-	// 	idx2++;
-	// 	if (needle[idx2] == '\0')
-	// 		return (((char *)haystack) + idx);
-	// }
-	// idx2 = 0;
-	// idx++;
-
-// COMMENTS:
-// if (!*needle) //same as (needle[idx] == '\0')

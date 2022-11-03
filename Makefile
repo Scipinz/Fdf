@@ -6,7 +6,7 @@
 #    By: kblok <kblok@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/11/16 20:46:21 by kblok         #+#    #+#                  #
-#    Updated: 2022/10/24 17:27:22 by kblok         ########   odam.nl          #
+#    Updated: 2022/11/02 14:47:14 by kblok         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,14 +18,14 @@ OBJS		= 	$(SRCS:srcs/%.c=objs/%.o)
 
 #==============================================================================: Compile variables
 CC			= 	gcc
-CFLAGS		= 	-Wall -Werror -Wextra
+CFLAGS		= 	-g -Wall -Werror -Wextra
 RM			=	rm -rf
 AR			=	ar rcs
 MKDIR		=	mkdir -p objs
 HEADERS		= 	-I $(FDF) -I $(MLX42) -I $(LIBFT)
 
 #==============================================================================: Include files
-FDF			=	.
+FDF			=	includes/
 LIBFT		= 	includes/libft/
 MLX42		=	includes/MLX42/
 
@@ -34,10 +34,8 @@ SRCS		=	$(addprefix srcs/, \
 				main.c \
 				draw_line.c \
 				error_check.c \
-				keyhooks.c \
 				map_parsing.c \
 				map_projection.c \
-				movement.c \
 				coordinates.c \
 				init_grid.c \
 				)
@@ -53,7 +51,7 @@ MAGENTA		= \033[1;35m
 RESET		= \033[0m
 
 #==============================================================================: Make commands
-all: message mlx $(NAME)
+all: message includes $(NAME)
 
 #==============================================================================: Main compile
 $(NAME): $(OBJS)
@@ -74,13 +72,9 @@ run: all
 	@./$(NAME) maps/$(MAP).fdf
 
 #==============================================================================: Compile includes
-mlx:
+includes:
 	@$(MAKE) -C $(MLX42)
 	@$(MAKE) -C $(LIBFT)
-
-#==============================================================================: Compile includes
-# libft:
-# 	@$(MAKE) -C $(LIBFT)
 
 #==============================================================================: Build messages
 message:
@@ -104,4 +98,4 @@ fclean: clean
 #==============================================================================: Remove object files and executables then remake executables
 re: fclean all
 
-.PHONY: all clean fclean re message
+.PHONY: all clean fclean re message includes run objs

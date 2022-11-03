@@ -6,7 +6,7 @@
 /*   By: kblok <kblok@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/16 19:42:30 by kblok         #+#    #+#                 */
-/*   Updated: 2021/11/16 19:50:30 by kblok         ########   odam.nl         */
+/*   Updated: 2022/11/02 14:58:59 by kblok         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,3 @@ int	ft_strncmp(const char *str, const char *str2, size_t num)
 	}
 	return (0);
 }
-
-// COMMENTS:
-
-// 	return ((unsigned char)str[idx] - (unsigned char)str2[idx]);
-// \200 is an octal value of a weird char. so you have to cast
-// it to an unsigned char otherwise it won't go above 127.

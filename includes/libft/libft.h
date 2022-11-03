@@ -6,7 +6,7 @@
 /*   By: kblok <kblok@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/17 14:32:19 by kblok         #+#    #+#                 */
-/*   Updated: 2022/10/18 11:41:09 by kblok         ########   odam.nl         */
+/*   Updated: 2022/11/03 11:59:01 by kblok         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <stdarg.h>
 # include <stdbool.h>
+# include <stdio.h>
 # include <fcntl.h>
 
 //=Bases=//
@@ -380,6 +381,8 @@ int		ft_printf(const char *format, ...);
 //
 
 int		ft_abs(int n);
+int		ft_max(int *array, int size);
+int		ft_min(int *array, int size);
 
 //
 //

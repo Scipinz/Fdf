@@ -6,7 +6,7 @@
 /*   By: kblok <kblok@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/17 17:04:40 by kblok         #+#    #+#                 */
-/*   Updated: 2022/10/18 13:47:43 by kblok         ########   odam.nl         */
+/*   Updated: 2022/10/26 14:10:19 by kblok         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	axis(int start, int end)
 {
-	if (start > end)
+	if (end < start)
 		return (1);
 	else
 		return (-1);
