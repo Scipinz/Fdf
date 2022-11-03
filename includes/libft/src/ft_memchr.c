@@ -6,7 +6,7 @@
 /*   By: kblok <kblok@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/16 19:12:55 by kblok         #+#    #+#                 */
-/*   Updated: 2021/11/16 19:46:57 by kblok         ########   odam.nl         */
+/*   Updated: 2022/11/03 13:03:59 by kblok         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,17 @@
 void	*ft_memchr(const void *src, int c, size_t num)
 {
 	unsigned char	*ptr;
-	size_t			idx;
+	size_t			i;
 
 	ptr = (unsigned char *)src;
-	idx = 0;
+	i = 0;
 	if (!src)
 		return (NULL);
-	while (idx < num)
+	while (i < num)
 	{
-		if (ptr[idx] == (unsigned char)c)
-		{
-			return ((unsigned char *)src + idx);
-		}
-		idx++;
+		if (ptr[i] == (unsigned char)c)
+			return ((void *)src + i);
+		i++;
 	}
 	return (NULL);
 }

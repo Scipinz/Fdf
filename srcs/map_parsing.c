@@ -6,7 +6,7 @@
 /*   By: kblok <kblok@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/17 12:59:15 by kblok         #+#    #+#                 */
-/*   Updated: 2022/11/03 12:24:22 by kblok         ########   odam.nl         */
+/*   Updated: 2022/11/03 13:33:42 by kblok         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,30 +65,15 @@ static t_map	process(char *str_map, int depth)
 	return (map);
 }
 
-// static bool	validate_num(char *str)
-// {
-// 	size_t	i;
-
-// 	i = 0;
-// 	while (str[i])
-// 	{
-// 		if (ft_isdigit(str[i]))
-// 		i++;
-// 	}
-// 	return (true);
-// }
-
 char	*read_map(int fd, int *depth)
 {
 	char	*temp;
 	char	*str_map;
 
 	str_map = NULL;
-	temp = ft_get_next_line(fd);
-	while (true) //validate_num(temp)
+	while (true)
 	{
-		// printf("%s\n", temp);
-		// printf("1\n");
+		temp = ft_get_next_line(fd);
 		if (temp)
 		{
 			str_map = ft_strappend(str_map, temp);
@@ -97,7 +82,6 @@ char	*read_map(int fd, int *depth)
 		else
 			break ;
 		free(temp);
-		temp = ft_get_next_line(fd);
 	}
 	return (str_map);
 }
@@ -107,15 +91,14 @@ t_map	map_parse(const char *filepath)
 	int		fd;
 	int		depth;
 	char	*str_map;
-	
+
 	depth = 0;
 	if (!ft_strnstr(filepath, ".fdf", ft_strlen(filepath)))
-		error("Invalid path, must include \".fdf\"!");
+		error("Invalid path, path must include \".fdf\"!");
 	fd = open(filepath, O_RDONLY);
 	if (fd < 0)
 		error("Failed to open file");
 	str_map = read_map(fd, &depth);
-	printf("yes\n");
 	if (!str_map)
 		error("Failed to read map");
 	close(fd);
