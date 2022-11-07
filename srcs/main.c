@@ -6,36 +6,44 @@
 /*   By: kblok <kblok@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/19 15:22:27 by kblok         #+#    #+#                 */
-/*   Updated: 2022/11/03 13:55:21 by kblok         ########   odam.nl         */
+/*   Updated: 2022/11/07 12:39:03 by kblok         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
+
+void	hook(void *param)
+{
+	mlx_t	*mlx;
+
+	mlx = param;
+	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(mlx);
+}
 
 int	main(int argc, char **argv)
 {
 	t_instance	fdf;
 
 	if (argc != 2)
-		error("Invalid map input");
+		error("Invalid input");
 	fdf.mlx = mlx_init(WIDTH, HEIGHT, "fdf", true);
 	if (!fdf.mlx)
 		return (0);
 	if (fdf.mlx)
 	{
-		fdf.map = map_parse(argv[1]);
+		fdf.map = parse(argv[1]);
 		init_grid(&fdf);
 		fdf.img = mlx_new_image(fdf.mlx, WIDTH, HEIGHT);
 		if (!fdf.img)
 		{
 			free(fdf.map.point);
-			error("Image generation failed!");
+			error("Generating image failed!");
 		}
-		project_map(fdf);
+		projection(fdf);
+		mlx_loop_hook(fdf.mlx, &hook, fdf.mlx);
 		mlx_loop(fdf.mlx);
 	}
-	else
-		error("Initializing fdf failed");
 	mlx_terminate(fdf.mlx);
 	free (fdf.map.point);
 	exit(EXIT_SUCCESS);
