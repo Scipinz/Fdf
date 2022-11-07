@@ -6,7 +6,7 @@
 #    By: kblok <kblok@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/11/16 20:46:21 by kblok         #+#    #+#                  #
-#    Updated: 2022/11/03 12:57:03 by kblok         ########   odam.nl          #
+#    Updated: 2022/11/07 11:36:59 by kblok         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,13 +31,13 @@ MLX42		=	includes/MLX42/
 
 #==============================================================================: Source files 
 SRCS		=	$(addprefix srcs/, \
-				main.c \
-				draw_line.c \
-				error_check.c \
-				map_parsing.c \
-				map_projection.c \
 				coordinates.c \
-				init_grid.c \
+				draw_line.c \
+				error.c \
+				main.c \
+				parsing.c \
+				projection.c \
+				rendering.c \
 				)
 
 #==============================================================================: GLFW
