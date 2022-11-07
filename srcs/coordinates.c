@@ -6,11 +6,20 @@
 /*   By: kblok <kblok@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/18 13:51:08 by kblok         #+#    #+#                 */
-/*   Updated: 2022/11/02 16:47:41 by kblok         ########   odam.nl         */
+/*   Updated: 2022/11/07 11:51:26 by kblok         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+t_coord	translate_coord(int x, int y)
+{
+	t_coord	coord;
+
+	coord.x = x;
+	coord.y = y;
+	return (coord);
+}
 
 static void	iso_rot(int *x, int *y)
 {
