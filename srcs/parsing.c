@@ -6,11 +6,12 @@
 /*   By: kblok <kblok@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/17 12:59:15 by kblok         #+#    #+#                 */
-/*   Updated: 2022/11/07 11:47:17 by kblok         ########   odam.nl         */
+/*   Updated: 2022/11/08 13:06:26 by kblok         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include <fcntl.h>
 
 static int	width(char *str_map)
 {
@@ -49,6 +50,8 @@ static t_map	process(char *str_map, int depth)
 	map.height = depth;
 	map.width = width(str_map);
 	map.point = (int *)ft_calloc(map.height * map.width, sizeof(int));
+	if (!map.point)
+		error("Calloc failed", 1);
 	while (str_map[i])
 	{
 		if (ft_isdigit(str_map[i]) || str_map[i] == '-')
@@ -94,13 +97,13 @@ t_map	parse(const char *filepath)
 
 	depth = 0;
 	if (!ft_strnstr(filepath, ".fdf", ft_strlen(filepath)))
-		error("Invalid path, path must include \".fdf\"!");
+		error("Invalid path, path must include \".fdf\"!", 1);
 	fd = open(filepath, O_RDONLY);
 	if (fd < 0)
-		error("Failed to open file");
+		error("Failed to open file", 1);
 	str_map = read_file(fd, &depth);
 	if (!str_map)
-		error("Failed to read map");
+		error("Failed to read map", 1);
 	close(fd);
 	return (process(str_map, depth));
 }

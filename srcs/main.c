@@ -6,7 +6,7 @@
 /*   By: kblok <kblok@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/19 15:22:27 by kblok         #+#    #+#                 */
-/*   Updated: 2022/11/07 12:39:03 by kblok         ########   odam.nl         */
+/*   Updated: 2022/11/08 11:48:28 by kblok         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 	t_instance	fdf;
 
 	if (argc != 2)
-		error("Invalid input");
+		error("Invalid input", 1);
 	fdf.mlx = mlx_init(WIDTH, HEIGHT, "fdf", true);
 	if (!fdf.mlx)
 		return (0);
@@ -38,7 +38,7 @@ int	main(int argc, char **argv)
 		if (!fdf.img)
 		{
 			free(fdf.map.point);
-			error("Generating image failed!");
+			error("Generating image failed!", 1);
 		}
 		projection(fdf);
 		mlx_loop_hook(fdf.mlx, &hook, fdf.mlx);

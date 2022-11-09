@@ -6,7 +6,7 @@
 /*   By: kblok <kblok@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/19 11:14:31 by kblok         #+#    #+#                 */
-/*   Updated: 2022/11/07 12:13:37 by kblok         ########   odam.nl         */
+/*   Updated: 2022/11/07 12:57:40 by kblok         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static double	set_height(t_map map)
 	while (diff > 10)
 	{
 		diff *= 0.5;
-		height *= 0.5;
+		height *= 0.65;
 	}
 	return (height);
 }
