@@ -6,7 +6,7 @@
 /*   By: kblok <kblok@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/17 17:04:40 by kblok         #+#    #+#                 */
-/*   Updated: 2022/11/08 12:52:42 by kblok         ########   odam.nl         */
+/*   Updated: 2022/11/29 14:55:25 by kblok         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,8 @@ static int	axis(int start, int end)
 
 static void	prep(t_coord start, t_coord end, t_coord *diff, t_coord *incr)
 {
-	//difference (delta) is punt tot punt
 	diff->x = ft_abs(start.x - end.x);
 	diff->y = ft_abs(start.y - end.y);
-	//increment is welke richting de lijn gaat
 	incr->x = axis(start.x, end.x);
 	incr->y = axis(start.y, end.y);
 }
@@ -38,7 +36,7 @@ void	draw_line(mlx_image_t *img, t_coord start, t_coord end)
 	int		boundary;
 
 	prep(start, end, &diff, &incr);
-	boundary = 2 * (diff.y - diff.x); //pixel placement
+	boundary = 2 * (diff.y - diff.x);
 	curr = end;
 	while (true)
 	{
