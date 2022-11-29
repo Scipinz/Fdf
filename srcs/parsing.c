@@ -72,6 +72,7 @@ char	*read_file(int fd, int *depth)
 {
 	char	*temp;
 	char	*str_map;
+	char	*append_check;
 
 	str_map = NULL;
 	while (true)
@@ -79,7 +80,14 @@ char	*read_file(int fd, int *depth)
 		temp = ft_get_next_line(fd);
 		if (temp)
 		{
-			str_map = ft_strappend(str_map, temp);
+			append_check = ft_strappend(str_map, temp);
+			if (!append_check)
+			{
+				free(temp);
+				free(str_map);
+				return (NULL);
+			}
+			str_map = append_check;
 			*depth += 1;
 		}
 		else
@@ -103,7 +111,10 @@ t_map	parse(const char *filepath)
 		error("Failed to open file", 1);
 	str_map = read_file(fd, &depth);
 	if (!str_map)
+	{
+		close(fd);
 		error("Failed to read map", 1);
+	}
 	close(fd);
 	return (process(str_map, depth));
 }
