@@ -6,7 +6,7 @@
 /*   By: kblok <kblok@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/17 12:59:15 by kblok         #+#    #+#                 */
-/*   Updated: 2022/11/08 13:06:26 by kblok         ########   odam.nl         */
+/*   Updated: 2022/11/29 18:42:03 by kblok         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,23 @@ char	*read_file(int fd, int *depth)
 	return (str_map);
 }
 
+static int	file_check(const char *filename)
+{
+	int	i;
+
+	i = 0;
+	while (filename[i])
+	{
+		if (filename[i] == '.')
+		{
+			if (ft_strcmp(&filename[i], ".fdf") == 0)
+				return (1);
+			return (0);
+		}
+		i++;
+	}
+	return (0);
+}
 t_map	parse(const char *filepath)
 {
 	int		fd;
@@ -104,8 +121,8 @@ t_map	parse(const char *filepath)
 	char	*str_map;
 
 	depth = 0;
-	if (!ft_strnstr(filepath, ".fdf", ft_strlen(filepath)))
-		error("Invalid path, path must include \".fdf\"!", 1);
+	if (!file_check(filepath))
+		error("Must provide a \'.fdf\' file!", 1);
 	fd = open(filepath, O_RDONLY);
 	if (fd < 0)
 		error("Failed to open file", 1);
