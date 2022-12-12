@@ -6,7 +6,7 @@
 /*   By: kblok <kblok@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/17 12:59:15 by kblok         #+#    #+#                 */
-/*   Updated: 2022/11/29 18:42:03 by kblok         ########   odam.nl         */
+/*   Updated: 2022/12/12 15:28:40 by kblok         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	width(char *str_map)
 	return (width);
 }
 
-static t_map	process(char *str_map, int depth)
+static t_map	process(char *str_map, int depth, mlx_t *mlx)
 {
 	t_map	map;
 	int		i;
@@ -51,7 +51,7 @@ static t_map	process(char *str_map, int depth)
 	map.width = width(str_map);
 	map.point = (int *)ft_calloc(map.height * map.width, sizeof(int));
 	if (!map.point)
-		error("Calloc failed", 1);
+		error("Calloc failed", 1, mlx);
 	while (str_map[i])
 	{
 		if (ft_isdigit(str_map[i]) || str_map[i] == '-')
@@ -114,7 +114,8 @@ static int	file_check(const char *filename)
 	}
 	return (0);
 }
-t_map	parse(const char *filepath)
+
+t_map	parse(const char *filepath, mlx_t *mlx)
 {
 	int		fd;
 	int		depth;
@@ -122,16 +123,16 @@ t_map	parse(const char *filepath)
 
 	depth = 0;
 	if (!file_check(filepath))
-		error("Must provide a \'.fdf\' file!", 1);
+		error("Must provide a \'.fdf\' file!", 1, mlx);
 	fd = open(filepath, O_RDONLY);
 	if (fd < 0)
-		error("Failed to open file", 1);
+		error("Failed to open file", 1, mlx);
 	str_map = read_file(fd, &depth);
 	if (!str_map)
 	{
 		close(fd);
-		error("Failed to read map", 1);
+		error("Failed to read map", 1, mlx);
 	}
 	close(fd);
-	return (process(str_map, depth));
+	return (process(str_map, depth, 0));
 }

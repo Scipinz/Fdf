@@ -6,7 +6,7 @@
 /*   By: kblok <kblok@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/19 15:12:55 by kblok         #+#    #+#                 */
-/*   Updated: 2022/11/08 11:47:39 by kblok         ########   odam.nl         */
+/*   Updated: 2022/12/12 15:30:12 by kblok         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ typedef struct s_instance
 }	t_instance;
 
 int		main(int argc, char **argv);
-t_map	parse(const char *filepath);
-void	error(char *str, int exit_code);
+t_map	parse(const char *filepath, mlx_t *mlx);
+void	error(char *str, int exit_code, mlx_t *mlx);
 void	init_grid(t_instance *fdf);
 void	draw_line(mlx_image_t *img, t_coord start, t_coord end);
 void	projection(t_instance fdf);
